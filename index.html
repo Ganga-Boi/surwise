@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SurWise - Intelligent Survey Platform</title>
-    <meta name="description" content="SurWise er den intelligente survey-platform til skoler og uddannelsesinstitutioner. AI-drevet analyse, smarte spørgeskemaer og actionable insights.">
+    <title>Jobcenterreformen 2025 - SurWise Survey</title>
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -17,12 +15,13 @@
             --primary-light: #1a3a6e;
             --accent: #3b82f6;
             --accent-light: #60a5fa;
-            --bg: #fafbfc;
+            --bg: #f8fafc;
             --bg-card: #ffffff;
             --text: #1e293b;
             --text-muted: #64748b;
             --border: #e2e8f0;
             --success: #10b981;
+            --error: #ef4444;
             --gradient: linear-gradient(135deg, #0a1f44 0%, #1a3a6e 50%, #2563eb 100%);
         }
 
@@ -41,26 +40,17 @@
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
-            overflow-x: hidden;
+            min-height: 100vh;
         }
 
         /* Navigation */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 1.25rem 2rem;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
+            background: white;
             padding: 1rem 2rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .nav-container {
@@ -71,1055 +61,1148 @@
             align-items: center;
         }
 
-        /* Logo med perfekt alignment */
-        .logo-wrap {
-            display: flex;
-            align-items: center;
-        }
-
         .logo-svg {
-            height: 48px;
+            height: 44px;
             width: auto;
-            display: block;
-            transition: transform 0.3s ease;
         }
 
-        .logo-wrap:hover .logo-svg {
-            transform: scale(1.02);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.05rem;
-            transition: color 0.2s ease;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links a:hover {
+        .nav-link {
             color: var(--accent);
-        }
-
-        .btn {
-            display: inline-flex;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
         }
 
-        .btn-primary {
-            background: var(--gradient);
-            color: white;
-            box-shadow: 0 4px 15px rgba(10, 31, 68, 0.3);
+        .nav-link:hover {
+            text-decoration: underline;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(10, 31, 68, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--border);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--primary);
-            background: var(--primary);
-            color: white;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
+        /* Landing Section */
+        .landing {
+            min-height: calc(100vh - 80px);
             display: flex;
             align-items: center;
-            padding: 8rem 2rem 4rem;
+            justify-content: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
+        .landing::before {
             content: '';
             position: absolute;
             top: -50%;
             right: -20%;
             width: 80%;
             height: 150%;
-            background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+            background: radial-gradient(ellipse, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
             pointer-events: none;
         }
 
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
+        .landing-content {
+            max-width: 700px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
-        .hero-content {
-            animation: fadeInUp 0.8s ease;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
+        .landing-badge {
+            display: inline-block;
             background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 100px;
-            font-size: 0.85rem;
-            font-weight: 600;
             color: var(--accent);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
             margin-bottom: 1.5rem;
         }
 
-        .badge::before {
-            content: '✨';
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
+        .landing h1 {
+            font-size: 3rem;
             font-weight: 800;
-            line-height: 1.15;
             color: var(--primary);
             margin-bottom: 1.5rem;
+            line-height: 1.2;
         }
 
-        h1 span {
+        .landing h1 span {
             background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .hero-text {
-            font-size: 1.2rem;
+        .landing-text {
+            font-size: 1.25rem;
             color: var(--text-muted);
-            margin-bottom: 2rem;
-            max-width: 500px;
-            font-family: 'Inter', sans-serif;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
         }
 
-        .hero-buttons {
+        .landing-meta {
             display: flex;
-            gap: 1rem;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
             flex-wrap: wrap;
         }
 
-        .hero-visual {
-            position: relative;
-            animation: fadeInUp 0.8s ease 0.2s both;
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
         }
 
-        .hero-card {
-            background: var(--bg-card);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.12);
-            border: 1px solid var(--border);
-            position: relative;
+        .meta-icon {
+            width: 20px;
+            height: 20px;
+            color: var(--accent);
+        }
+
+        .btn-start {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.25rem 3rem;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-family: inherit;
+            font-size: 1.125rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(10, 31, 68, 0.3);
+        }
+
+        .btn-start:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(10, 31, 68, 0.4);
+        }
+
+        .btn-start svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Survey Section */
+        .survey-section {
+            display: none;
+            padding-bottom: 4rem;
+        }
+
+        .survey-section.active {
+            display: block;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 73px;
+            z-index: 90;
+        }
+
+        .progress-inner {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
             overflow: hidden;
         }
 
-        .hero-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
+        .progress-fill {
+            height: 100%;
             background: var(--gradient);
+            border-radius: 4px;
+            transition: width 0.4s ease;
+            width: 0%;
         }
 
-        .mock-survey {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+        /* Survey Container */
+        .survey-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 2rem;
         }
 
-        .mock-question {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+        /* Question Card */
+        .question-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
         }
 
-        .mock-label {
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--primary);
+        .question-card:hover {
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
         }
 
-        .mock-options {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+        .question-card.answered {
+            border-color: var(--success);
         }
 
-        .mock-option {
+        .question-header {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            padding: 0.75rem 1rem;
-            background: var(--bg);
-            border-radius: 8px;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            transition: all 0.2s ease;
+            margin-bottom: 1rem;
         }
 
-        .mock-option.selected {
-            background: rgba(59, 130, 246, 0.1);
-            color: var(--accent);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-        }
-
-        .mock-radio {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            border: 2px solid var(--border);
-            position: relative;
-        }
-
-        .mock-option.selected .mock-radio {
-            border-color: var(--accent);
-        }
-
-        .mock-option.selected .mock-radio::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-        }
-
-        .ai-insight {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            padding: 1rem;
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
-            border-radius: 12px;
-            border: 1px solid rgba(16, 185, 129, 0.2);
-        }
-
-        .ai-icon {
+        .question-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             width: 32px;
             height: 32px;
             background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            font-size: 0.875rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .question-category {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .question-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+        }
+
+        /* Options */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .option {
+            position: relative;
+        }
+
+        .option input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .option label {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.25rem;
+            background: var(--bg);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .option label:hover {
+            border-color: var(--accent);
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .option input:checked + label {
+            border-color: var(--accent);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .option-indicator {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .option input[type="checkbox"] + label .option-indicator {
+            border-radius: 6px;
+        }
+
+        .option input:checked + label .option-indicator {
+            border-color: var(--accent);
+            background: var(--accent);
+        }
+
+        .option input:checked + label .option-indicator::after {
+            content: '✓';
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        /* Scale Options */
+        .scale-options {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .scale-options .option {
+            flex: 1;
+            min-width: 100px;
+        }
+
+        .scale-options .option label {
+            justify-content: center;
+            text-align: center;
+            padding: 0.875rem 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .scale-options .option-indicator {
+            display: none;
+        }
+
+        /* Textarea */
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+            transition: all 0.2s ease;
+            background: var(--bg);
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: white;
+        }
+
+        /* Section Divider */
+        .section-divider {
+            text-align: center;
+            margin: 3rem 0 2rem;
+            position: relative;
+        }
+
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--border);
+        }
+
+        .section-title {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg);
+            padding: 0.5rem 1.5rem;
+            position: relative;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Submit */
+        .submit-section {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .btn-submit {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.25rem 3rem;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-family: inherit;
+            font-size: 1.125rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(10, 31, 68, 0.3);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(10, 31, 68, 0.4);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-submit.loading {
+            pointer-events: none;
+        }
+
+        .btn-submit.loading::after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            border: 2px solid white;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-left: 0.5rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Thank You */
+        .thank-you {
+            display: none;
+            text-align: center;
+            padding: 6rem 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .thank-you.active {
+            display: block;
+        }
+
+        .thank-you-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            animation: popIn 0.5s ease;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .thank-you-icon svg {
+            width: 50px;
+            height: 50px;
+            color: white;
+        }
+
+        .thank-you h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .thank-you p {
+            color: var(--text-muted);
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+        }
+
+        /* AI Insight Box */
+        .ai-insight {
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-top: 2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .ai-insight-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--success);
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 0.9rem;
             flex-shrink: 0;
         }
 
-        .ai-text {
-            font-size: 0.85rem;
-            color: var(--text);
-            line-height: 1.5;
-        }
-
-        .ai-text strong {
-            color: var(--success);
-        }
-
-        /* Floating elements */
-        .float-element {
-            position: absolute;
-            background: var(--bg-card);
-            padding: 0.75rem 1rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .float-1 {
-            top: -20px;
-            right: -20px;
-            animation-delay: 0s;
-        }
-
-        .float-2 {
-            bottom: 40px;
-            left: -30px;
-            animation-delay: 1s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* Features Section */
-        .features {
-            padding: 6rem 2rem;
-            background: white;
-        }
-
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-size: clamp(2rem, 4vw, 2.75rem);
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .section-header p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            padding: 2rem;
-            background: var(--bg);
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--gradient);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-            border-color: transparent;
-        }
-
-        .feature-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .feature-icon {
-            width: 56px;
-            height: 56px;
-            background: var(--gradient);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.75rem;
-        }
-
-        .feature-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* Stats Section */
-        .stats {
-            padding: 4rem 2rem;
-            background: var(--gradient);
-        }
-
-        .stats-grid {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-
-        .stat-item {
-            text-align: center;
+        .ai-insight-icon svg {
+            width: 18px;
+            height: 18px;
             color: white;
         }
 
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 0.25rem;
-        }
-
-        .stat-label {
+        .ai-insight-text {
             font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        /* Pricing Section */
-        .pricing {
-            padding: 6rem 2rem;
-            background: var(--bg);
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .pricing-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2.5rem;
-            border: 2px solid var(--border);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .pricing-card.featured {
-            border-color: var(--accent);
-            transform: scale(1.02);
-        }
-
-        .pricing-card.featured::before {
-            content: 'Mest populær';
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent);
-            color: white;
-            padding: 0.35rem 1rem;
-            border-radius: 100px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .pricing-card:hover {
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-        }
-
-        .pricing-name {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-        }
-
-        .pricing-price {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 0.25rem;
-        }
-
-        .pricing-price span {
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--text-muted);
-        }
-
-        .pricing-desc {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-
-        .pricing-features li {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.5rem 0;
-            font-size: 0.95rem;
             color: var(--text);
         }
 
-        .pricing-features li::before {
-            content: '✓';
+        .ai-insight-text strong {
             color: var(--success);
-            font-weight: 700;
-        }
-
-        .pricing-card .btn {
-            width: 100%;
-            justify-content: center;
-        }
-
-        /* CTA Section */
-        .cta {
-            padding: 6rem 2rem;
-            background: white;
-        }
-
-        .cta-box {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--gradient);
-            border-radius: 24px;
-            padding: 4rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-box::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 50%);
-        }
-
-        .cta-box h2 {
-            font-size: clamp(1.75rem, 4vw, 2.25rem);
-            font-weight: 700;
-            color: white;
-            margin-bottom: 1rem;
-            position: relative;
-        }
-
-        .cta-box p {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2rem;
-            position: relative;
-        }
-
-        .cta-box .btn {
-            background: white;
-            color: var(--primary);
-            font-weight: 700;
-            position: relative;
-        }
-
-        .cta-box .btn:hover {
-            background: var(--bg);
         }
 
         /* Footer */
         footer {
-            padding: 3rem 2rem;
-            background: var(--primary);
-            color: white;
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            border-top: 1px solid var(--border);
+            background: white;
         }
 
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .footer-logo-svg {
-            height: 40px;
-            width: auto;
-            display: block;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
+        footer a {
+            color: var(--accent);
             text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.2s;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .footer-copy {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* Mobile Menu */
-        .mobile-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .mobile-toggle span {
-            width: 24px;
-            height: 2px;
-            background: var(--primary);
-            transition: all 0.3s;
         }
 
         /* Responsive */
-        @media (max-width: 968px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-content {
-                order: 1;
-            }
-
-            .hero-visual {
-                order: 2;
-            }
-
-            .hero-text {
-                margin: 0 auto 2rem;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .float-element {
-                display: none;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-toggle {
-                display: flex;
-            }
-
-            h1 {
+        @media (max-width: 640px) {
+            .landing h1 {
                 font-size: 2rem;
             }
 
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 1.5rem;
+            .landing-meta {
+                gap: 1rem;
             }
 
-            .stat-number {
-                font-size: 2rem;
+            .survey-container {
+                padding: 1rem;
             }
 
-            .cta-box {
-                padding: 2.5rem 1.5rem;
+            .question-card {
+                padding: 1.5rem;
             }
 
-            .footer-container {
-                flex-direction: column;
-                text-align: center;
+            .scale-options .option {
+                min-width: calc(50% - 0.25rem);
+            }
+
+            .progress-container {
+                top: 65px;
             }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav id="navbar">
+    <nav>
         <div class="nav-container">
-            <div class="logo-wrap">
-                <svg class="logo-svg" viewBox="0 0 280 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Clipboard icon -->
-                    <rect x="4" y="8" width="40" height="48" rx="4" stroke="#0a1f44" stroke-width="2.5" fill="none"/>
-                    <rect x="14" y="4" width="20" height="8" rx="2" fill="#0a1f44"/>
-                    <!-- Bar chart -->
-                    <rect x="12" y="36" width="6" height="14" rx="1" fill="#0a1f44"/>
-                    <rect x="21" y="28" width="6" height="22" rx="1" fill="#0a1f44"/>
-                    <rect x="30" y="20" width="6" height="30" rx="1" fill="#0a1f44"/>
-                    <!-- Checkmark circle -->
-                    <circle cx="38" cy="48" r="10" fill="#0a1f44"/>
-                    <path d="M33 48l3 3 6-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <!-- SurWise text -->
-                    <text x="56" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-size="28" font-weight="700" fill="#0a1f44">SurWise</text>
-                    <!-- SURVEY INSIGHTS text -->
-                    <text x="56" y="52" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="600" fill="#0a1f44" letter-spacing="1.5">SURVEY INSIGHTS</text>
-                </svg>
-            </div>
-            <div class="nav-links">
-                <a href="#features">Funktioner</a>
-                <a href="#pricing">Priser</a>
-                <a href="#skoler">For skoler</a>
-                <a href="#kontakt" class="btn btn-primary">Kontakt os</a>
-            </div>
-            <div class="mobile-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <svg class="logo-svg" viewBox="0 0 200 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Clipboard icon -->
+                <rect x="2" y="6" width="28" height="34" rx="3" stroke="#0a1f44" stroke-width="2" fill="none"/>
+                <rect x="9" y="2" width="14" height="6" rx="1.5" fill="#0a1f44"/>
+                <!-- Bar chart -->
+                <rect x="8" y="26" width="4" height="10" rx="0.5" fill="#0a1f44"/>
+                <rect x="14" y="20" width="4" height="16" rx="0.5" fill="#0a1f44"/>
+                <rect x="20" y="14" width="4" height="22" rx="0.5" fill="#0a1f44"/>
+                <!-- Checkmark circle -->
+                <circle cx="27" cy="34" r="7" fill="#0a1f44"/>
+                <path d="M23.5 34l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- Text -->
+                <text x="38" y="28" font-family="'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="700" fill="#0a1f44">SurWise</text>
+                <text x="38" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" font-weight="600" fill="#0a1f44" letter-spacing="1">SURVEY INSIGHTS</text>
+            </svg>
+            <a href="https://surwise.vercel.app" class="nav-link">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Tilbage til SurWise
+            </a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="badge">Ny intelligent platform</div>
-                <h1>Surveys der <span>forstår</span> dine svar</h1>
-                <p class="hero-text">SurWise bruger AI til at analysere besvarelser og give dig actionable insights – ikke bare grafer og tal. Perfekt til skoler, der vil lytte til elever og forældre.</p>
-                <div class="hero-buttons">
-                    <a href="#kontakt" class="btn btn-primary">
-                        Start gratis
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </a>
-                    <a href="#features" class="btn btn-secondary">Se hvordan det virker</a>
+    <!-- Landing Page -->
+    <section class="landing" id="landing">
+        <div class="landing-content">
+            <div class="landing-badge">📊 SurWise Survey</div>
+            <h1>Hvad mener du om <span>jobcenterreformen</span>?</h1>
+            <p class="landing-text">
+                I april 2025 blev der indgået en historisk aftale om at nedlægge jobcentrene. 
+                Del din mening om Danmarks største reform af beskæftigelsessystemet.
+            </p>
+            <div class="landing-meta">
+                <div class="meta-item">
+                    <svg class="meta-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Ca. 5 minutter
+                </div>
+                <div class="meta-item">
+                    <svg class="meta-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                    20 spørgsmål
+                </div>
+                <div class="meta-item">
+                    <svg class="meta-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    100% anonymt
                 </div>
             </div>
-            <div class="hero-visual">
-                <div class="float-element float-1">
-                    <span style="color: var(--success);">📊</span> 94% svarprocent
-                </div>
-                <div class="float-element float-2">
-                    <span style="color: var(--accent);">🤖</span> AI-analyse klar
-                </div>
-                <div class="hero-card">
-                    <div class="mock-survey">
-                        <div class="mock-question">
-                            <div class="mock-label">Hvordan oplever du undervisningsmiljøet?</div>
-                            <div class="mock-options">
-                                <div class="mock-option">
-                                    <div class="mock-radio"></div>
-                                    Meget godt
-                                </div>
-                                <div class="mock-option selected">
-                                    <div class="mock-radio"></div>
-                                    Godt
-                                </div>
-                                <div class="mock-option">
-                                    <div class="mock-radio"></div>
-                                    Kunne være bedre
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ai-insight">
-                            <div class="ai-icon">🤖</div>
-                            <div class="ai-text">
-                                <strong>AI-indsigt:</strong> Besvarelserne viser generel tilfredshed, men 23% efterspørger bedre grupperum. Anbefaling: Undersøg muligheder for flere studieområder.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <button class="btn-start" id="startBtn">
+                <span>Start survey</span>
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="section-container">
-            <div class="section-header">
-                <h2>Hvorfor vælge SurWise?</h2>
-                <p>Vi har genopfundet spørgeskemaer med kunstig intelligens, så du får indsigt – ikke kun data.</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🧠</div>
-                    <h3>AI-genererede spørgsmål</h3>
-                    <p>Beskriv hvad du vil undersøge, og SurWise foreslår professionelle, velformulerede spørgsmål tilpasset din målgruppe.</p>
+    <!-- Survey Section -->
+    <section class="survey-section" id="surveySection">
+        <div class="progress-container">
+            <div class="progress-inner">
+                <div class="progress-text">
+                    <span id="progressLabel">Spørgsmål 0 af 20</span>
+                    <span id="progressPercent">0%</span>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Automatisk analyse</h3>
-                    <p>Vores AI læser alle svar og giver dig en klar sammenfatning med konkrete anbefalinger – på dansk.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💬</div>
-                    <h3>Sentiment-analyse</h3>
-                    <p>Forstå stemningen bag fritekst-svar. SurWise registrerer frustrationer, tilfredshed og nuancer automatisk.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📈</div>
-                    <h3>Benchmark & sammenligning</h3>
-                    <p>Se hvordan jeres resultater ligger i forhold til landsgennemsnittet eller tidligere undersøgelser.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔔</div>
-                    <h3>Smart distribution</h3>
-                    <p>Automatiske påmindelser, optimal timing og målrettet udsendelse sikrer høj svarprocent.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3>GDPR-compliant</h3>
-                    <p>Data hostes i Danmark/EU. Fuld anonymisering og dataminimering som standard.</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <div class="stat-number">94%</div>
-                <div class="stat-label">Gennemsnitlig svarprocent</div>
+        <div class="survey-container" id="surveyContainer">
+            <!-- BAGGRUND -->
+            <div class="section-divider">
+                <div class="section-title">👤 Baggrund</div>
             </div>
-            <div class="stat-item">
-                <div class="stat-number">2 min</div>
-                <div class="stat-label">At oprette en survey</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">10 sek</div>
-                <div class="stat-label">AI-analyse af 1000 svar</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">Dansk udviklet</div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Pricing Section -->
-    <section class="pricing" id="pricing">
-        <div class="section-container">
-            <div class="section-header">
-                <h2>Enkel prissætning</h2>
-                <p>Start gratis og opgrader når behovet vokser. Ingen skjulte gebyrer.</p>
-            </div>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="pricing-name">Gratis</div>
-                    <div class="pricing-price">0 kr</div>
-                    <div class="pricing-desc">Perfekt til at komme i gang</div>
-                    <ul class="pricing-features">
-                        <li>Op til 3 aktive surveys</li>
-                        <li>100 svar per måned</li>
-                        <li>Basis AI-analyse</li>
-                        <li>Email support</li>
-                    </ul>
-                    <a href="#kontakt" class="btn btn-secondary">Kom i gang</a>
+            <div class="question-card" data-question="1">
+                <div class="question-header">
+                    <span class="question-number">1</span>
+                    <span class="question-category">Baggrund</span>
                 </div>
-                <div class="pricing-card featured">
-                    <div class="pricing-name">Skole</div>
-                    <div class="pricing-price">299 kr <span>/måned</span></div>
-                    <div class="pricing-desc">Alt hvad en skole har brug for</div>
-                    <ul class="pricing-features">
-                        <li>Ubegrænsede surveys</li>
-                        <li>Ubegrænsede svar</li>
-                        <li>Fuld AI-analyse & rapporter</li>
-                        <li>Benchmark mod andre skoler</li>
-                        <li>Prioriteret support</li>
-                    </ul>
-                    <a href="#kontakt" class="btn btn-primary">Prøv gratis i 30 dage</a>
-                </div>
-                <div class="pricing-card">
-                    <div class="pricing-name">Enterprise</div>
-                    <div class="pricing-price">Kontakt</div>
-                    <div class="pricing-desc">Til kommuner og større organisationer</div>
-                    <ul class="pricing-features">
-                        <li>Alt i Skole-pakken</li>
-                        <li>SSO & brugeradministration</li>
-                        <li>API-adgang</li>
-                        <li>White-label mulighed</li>
-                        <li>Dedikeret success manager</li>
-                    </ul>
-                    <a href="#kontakt" class="btn btn-secondary">Kontakt salg</a>
+                <p class="question-text">Hvad er din alder?</p>
+                <div class="options">
+                    <div class="option"><input type="radio" name="q1" id="q1a" value="Under 25"><label for="q1a"><span class="option-indicator"></span>Under 25</label></div>
+                    <div class="option"><input type="radio" name="q1" id="q1b" value="25-34"><label for="q1b"><span class="option-indicator"></span>25-34</label></div>
+                    <div class="option"><input type="radio" name="q1" id="q1c" value="35-44"><label for="q1c"><span class="option-indicator"></span>35-44</label></div>
+                    <div class="option"><input type="radio" name="q1" id="q1d" value="45-54"><label for="q1d"><span class="option-indicator"></span>45-54</label></div>
+                    <div class="option"><input type="radio" name="q1" id="q1e" value="55-64"><label for="q1e"><span class="option-indicator"></span>55-64</label></div>
+                    <div class="option"><input type="radio" name="q1" id="q1f" value="65+"><label for="q1f"><span class="option-indicator"></span>65+</label></div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section class="cta" id="skoler">
-        <div class="cta-box">
-            <h2>Er din skole klar til smartere surveys?</h2>
-            <p>Book et uforpligtende møde og se hvordan SurWise kan hjælpe jer med elevtrivsel, forældreinddragelse og evaluering.</p>
-            <a href="#kontakt" class="btn">Book en demo</a>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="features" id="kontakt">
-        <div class="section-container">
-            <div class="section-header">
-                <h2>Kontakt os</h2>
-                <p>Har du spørgsmål eller vil du høre mere? Skriv til os, så vender vi tilbage inden for 24 timer.</p>
+            <div class="question-card" data-question="2">
+                <div class="question-header">
+                    <span class="question-number">2</span>
+                    <span class="question-category">Baggrund</span>
+                </div>
+                <p class="question-text">Hvad er din nuværende beskæftigelse?</p>
+                <div class="options">
+                    <div class="option"><input type="radio" name="q2" id="q2a" value="I arbejde"><label for="q2a"><span class="option-indicator"></span>I arbejde</label></div>
+                    <div class="option"><input type="radio" name="q2" id="q2b" value="Studerende"><label for="q2b"><span class="option-indicator"></span>Studerende</label></div>
+                    <div class="option"><input type="radio" name="q2" id="q2c" value="Ledig / jobsøgende"><label for="q2c"><span class="option-indicator"></span>Ledig / jobsøgende</label></div>
+                    <div class="option"><input type="radio" name="q2" id="q2d" value="Sygemeldt"><label for="q2d"><span class="option-indicator"></span>Sygemeldt</label></div>
+                    <div class="option"><input type="radio" name="q2" id="q2e" value="Førtidspension"><label for="q2e"><span class="option-indicator"></span>Førtidspension</label></div>
+                    <div class="option"><input type="radio" name="q2" id="q2f" value="Efterløn / pension"><label for="q2f"><span class="option-indicator"></span>Efterløn / pension</label></div>
+                    <div class="option"><input type="radio" name="q2" id="q2g" value="Andet"><label for="q2g"><span class="option-indicator"></span>Andet</label></div>
+                </div>
             </div>
-            <div style="max-width: 500px; margin: 0 auto; text-align: center;">
-                <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 1.5rem;">
-                    📧 <a href="mailto:kontakt@surwise.dk" style="color: var(--accent); text-decoration: none; font-weight: 600;">kontakt@surwise.dk</a>
+
+            <div class="question-card" data-question="3">
+                <div class="question-header">
+                    <span class="question-number">3</span>
+                    <span class="question-category">Baggrund</span>
+                </div>
+                <p class="question-text">Har du nogensinde arbejdet i beskæftigelsessystemet?</p>
+                <div class="options">
+                    <div class="option"><input type="radio" name="q3" id="q3a" value="Ja, i et jobcenter"><label for="q3a"><span class="option-indicator"></span>Ja, i et jobcenter</label></div>
+                    <div class="option"><input type="radio" name="q3" id="q3b" value="Ja, i a-kasse eller lignende"><label for="q3b"><span class="option-indicator"></span>Ja, i a-kasse eller lignende</label></div>
+                    <div class="option"><input type="radio" name="q3" id="q3c" value="Ja, i HR/rekruttering"><label for="q3c"><span class="option-indicator"></span>Ja, i HR/rekruttering i kommune eller virksomhed</label></div>
+                    <div class="option"><input type="radio" name="q3" id="q3d" value="Nej"><label for="q3d"><span class="option-indicator"></span>Nej</label></div>
+                </div>
+            </div>
+
+            <!-- KENDSKAB -->
+            <div class="section-divider">
+                <div class="section-title">📰 Kendskab til reformen</div>
+            </div>
+
+            <div class="question-card" data-question="4">
+                <div class="question-header">
+                    <span class="question-number">4</span>
+                    <span class="question-category">Kendskab</span>
+                </div>
+                <p class="question-text">Hvor meget kender du til regeringens reform om at nedlægge jobcentrene?</p>
+                <div class="options">
+                    <div class="option"><input type="radio" name="q4" id="q4a" value="Kender det meget godt"><label for="q4a"><span class="option-indicator"></span>Kender det meget godt</label></div>
+                    <div class="option"><input type="radio" name="q4" id="q4b" value="Kender det godt"><label for="q4b"><span class="option-indicator"></span>Kender det godt</label></div>
+                    <div class="option"><input type="radio" name="q4" id="q4c" value="Kender lidt til det"><label for="q4c"><span class="option-indicator"></span>Kender lidt til det</label></div>
+                    <div class="option"><input type="radio" name="q4" id="q4d" value="Har kun hørt om det"><label for="q4d"><span class="option-indicator"></span>Har kun hørt om det</label></div>
+                    <div class="option"><input type="radio" name="q4" id="q4e" value="Kender ikke til det"><label for="q4e"><span class="option-indicator"></span>Kender ikke til det</label></div>
+                </div>
+            </div>
+
+            <div class="question-card" data-question="5">
+                <div class="question-header">
+                    <span class="question-number">5</span>
+                    <span class="question-category">Kendskab</span>
+                </div>
+                <p class="question-text">Hvor har du primært hørt om reformen? (vælg gerne flere)</p>
+                <div class="options">
+                    <div class="option"><input type="checkbox" name="q5" id="q5a" value="TV"><label for="q5a"><span class="option-indicator"></span>TV (DR, TV2 m.fl.)</label></div>
+                    <div class="option"><input type="checkbox" name="q5" id="q5b" value="Aviser"><label for="q5b"><span class="option-indicator"></span>Aviser / nyhedssites</label></div>
+                    <div class="option"><input type="checkbox" name="q5" id="q5c" value="Sociale medier"><label for="q5c"><span class="option-indicator"></span>Sociale medier</label></div>
+                    <div class="option"><input type="checkbox" name="q5" id="q5d" value="Arbejdspladsen"><label for="q5d"><span class="option-indicator"></span>Arbejdspladsen</label></div>
+                    <div class="option"><input type="checkbox" name="q5" id="q5e" value="Venner/familie"><label for="q5e"><span class="option-indicator"></span>Venner / familie</label></div>
+                    <div class="option"><input type="checkbox" name="q5" id="q5f" value="Har ikke hørt om det"><label for="q5f"><span class="option-indicator"></span>Har ikke hørt om det</label></div>
+                </div>
+            </div>
+
+            <div class="question-card" data-question="6">
+                <div class="question-header">
+                    <span class="question-number">6</span>
+                    <span class="question-category">Kendskab</span>
+                </div>
+                <p class="question-text">Vidste du, at reformen skal spare ca. 3 milliarder kroner årligt?</p>
+                <div class="options">
+                    <div class="option"><input type="radio" name="q6" id="q6a" value="Ja"><label for="q6a"><span class="option-indicator"></span>Ja</label></div>
+                    <div class="option"><input type="radio" name="q6" id="q6b" value="Nej"><label for="q6b"><span class="option-indicator"></span>Nej</label></div>
+                </div>
+            </div>
+
+            <div class="question-card" data-question="7">
+                <div class="question-header">
+                    <span class="question-number">7</span>
+                    <span class="question-category">Kendskab</span>
+                </div>
+                <p class="question-text">Vidste du, at over 500.000 tvungne samtaler fjernes med reformen?</p>
+                <div class="options">
+                    <div class="option"><input type="radio" name="q7" id="q7a" value="Ja"><label for="q7a"><span class="option-indicator"></span>Ja</label></div>
+                    <div class="option"><input type="radio" name="q7" id="q7b" value="Nej"><label for="q7b"><span class="option-indicator"></span>Nej</label></div>
+                </div>
+            </div>
+
+            <!-- ERFARING -->
+            <div class="section-divider">
+                <div class="section-title">🏢 Erfaring med jobcentre</div>
+            </div>
+
+            <div class="question-card" data-question="8">
+                <div class="question-header">
+                    <span class="question-number">8</span>
+                    <span class="question-category">Erfaring</span>
+                </div>
+                <p class="question-text">Har du nogensinde haft kontakt med et jobcenter som borger?</p>
+                <div class="options">
+                    <div class="option"><input type="radio" name="q8" id="q8a" value="Ja, inden for de seneste 2 år"><label for="q8a"><span class="option-indicator"></span>Ja, inden for de seneste 2 år</label></div>
+                    <div class="option"><input type="radio" name="q8" id="q8b" value="Ja, men det er længere tid siden"><label for="q8b"><span class="option-indicator"></span>Ja, men det er længere tid siden</label></div>
+                    <div class="option"><input type="radio" name="q8" id="q8c" value="Nej"><label for="q8c"><span class="option-indicator"></span>Nej</label></div>
+                </div>
+            </div>
+
+            <div class="question-card" data-question="9">
+                <div class="question-header">
+                    <span class="question-number">9</span>
+                    <span class="question-category">Erfaring</span>
+                </div>
+                <p class="question-text">Hvordan oplevede du generelt kontakten med jobcenteret?</p>
+                <div class="options scale-options">
+                    <div class="option"><input type="radio" name="q9" id="q9a" value="Meget positiv"><label for="q9a">Meget positiv</label></div>
+                    <div class="option"><input type="radio" name="q9" id="q9b" value="Positiv"><label for="q9b">Positiv</label></div>
+                    <div class="option"><input type="radio" name="q9" id="q9c" value="Neutral"><label for="q9c">Neutral</label></div>
+                    <div class="option"><input type="radio" name="q9" id="q9d" value="Negativ"><label for="q9d">Negativ</label></div>
+                    <div class="option"><input type="radio" name="q9" id="q9e" value="Meget negativ"><label for="q9e">Meget negativ</label></div>
+                </div>
+            </div>
+
+            <div class="question-card" data-question="10">
+                <div class="question-header">
+                    <span class="question-number">10</span>
+                    <span class="question-category">Erfaring</span>
+                </div>
+                <p class="question-text">Følte du, at jobcenteret hjalp dig tættere på arbejde?</p>
+                <div class="options">
+                    <div class="option"><input type="radio" name="q10" id="q10a" value="Ja, i høj grad"><label for="q10a"><span class="option-indicator"></span>Ja, i høj grad</label></div>
+                    <div class="option"><input type="radio" name="q10" id="q10b" value="Ja, til dels"><label for="q10b"><span class="option-indicator"></span>Ja, til dels</label></div>
+                    <div class="option"><input type="radio" name="q10" id="q10c" value="Nej, ikke rigtig"><label for="q10c"><span class="option-indicator"></span>Nej, ikke rigtig</label></div>
+                    <div class="option"><input type="radio" name="q10" id="q10d" value="Nej, slet ikke"><label for="q10d"><span class="option-indicator"></span>Nej, slet ikke</label></div>
+                    <div class="option"><input type="radio" name="q10" id="q10e" value="Ikke relevant"><label for="q10e"><span class="option-indicator"></span>Ikke relevant for mig</label></div>
+                </div>
+            </div>
+
+            <div class="question-card" data-question="11">
+                <div class="question-header">
+                    <span class="question-number">11</span>
+                    <span class="question-category">Erfaring</span>
+                </div>
+                <p class="question-text">Oplevede du unødvendigt bureaukrati eller meningsløse krav?</p>
+                <div class="options">
+                    <div class="option"><input type="radio" name="q11" id="q11a" value="Ja, meget"><label for="q11a"><span class="option-indicator"></span>Ja, meget</label></div>
+                    <div class="option"><input type="radio" name="q11" id="q11b" value="Ja, noget"><label for="q11b"><span class="option-indicator"></span>Ja, noget</label></div>
+                    <div class="option"><input type="radio" name="q11" id="q11c" value="Nej, ikke særligt"><label for="q11c"><span class="option-indicator"></span>Nej, ikke særligt</label></div>
+                    <div class="option"><input type="radio" name="q11" id="q11d" value="Nej, slet ikke"><label for="q11d"><span class="option-indicator"></span>Nej, slet ikke</label></div>
+                    <div class="option"><input type="radio" name="q11" id="q11e" value="Ikke relevant"><label for="q11e"><span class="option-indicator"></span>Ikke relevant for mig</label></div>
+                </div>
+            </div>
+
+            <div class="question-card" data-question="12">
+                <div class="question-header">
+                    <span class="question-number">12</span>
+                    <span class="question-category">Erfaring</span>
+                </div>
+                <p class="question-text">Kender du nogen, der har haft dårlige oplevelser med jobcentre?</p>
+                <div class="options">
+                    <div class="option"><input type="radio" name="q12" id="q12a" value="Ja, flere"><label for="q12a"><span class="option-indicator"></span>Ja, flere personer</label></div>
+                    <div class="option"><input type="radio" name="q12" id="q12b" value="Ja, enkelte"><label for="q12b"><span class="option-indicator"></span>Ja, enkelte personer</label></div>
+                    <div class="option"><input type="radio" name="q12" id="q12c" value="Nej"><label for="q12c"><span class="option-indicator"></span>Nej</label></div>
+                </div>
+            </div>
+
+            <!-- HOLDNINGER -->
+            <div class="section-divider">
+                <div class="section-title">💭 Holdninger til reformen</div>
+            </div>
+
+            <div class="question-card" data-question="13">
+                <div class="question-header">
+                    <span class="question-number">13</span>
+                    <span class="question-category">Holdninger</span>
+                </div>
+                <p class="question-text">Hvad er din overordnede holdning til at nedlægge jobcentrene?</p>
+                <div class="options scale-options">
+                    <div class="option"><input type="radio" name="q13" id="q13a" value="Meget positiv"><label for="q13a">Meget positiv</label></div>
+                    <div class="option"><input type="radio" name="q13" id="q13b" value="Positiv"><label for="q13b">Positiv</label></div>
+                    <div class="option"><input type="radio" name="q13" id="q13c" value="Neutral"><label for="q13c">Neutral</label></div>
+                    <div class="option"><input type="radio" name="q13" id="q13d" value="Negativ"><label for="q13d">Negativ</label></div>
+                    <div class="option"><input type="radio" name="q13" id="q13e" value="Meget negativ"><label for="q13e">Meget negativ</label></div>
+                </div>
+            </div>
+
+            <div class="question-card" data-question="14">
+                <div class="question-header">
+                    <span class="question-number">14</span>
+                    <span class="question-category">Holdninger</span>
+                </div>
+                <p class="question-text">Tror du, reformen vil gøre det lettere for ledige at komme i arbejde?</p>
+                <div class="options">
+                    <div class="option"><input type="radio" name="q14" id="q14a" value="Ja, helt sikkert"><label for="q14a"><span class="option-indicator"></span>Ja, helt sikkert</label></div>
+                    <div class="option"><input type="radio" name="q14" id="q14b" value="Ja, sandsynligvis"><label for="q14b"><span class="option-indicator"></span>Ja, sandsynligvis</label></div>
+                    <div class="option"><input type="radio" name="q14" id="q14c" value="Usikker"><label for="q14c"><span class="option-indicator"></span>Usikker</label></div>
+                    <div class="option"><input type="radio" name="q14" id="q14d" value="Nej, nok ikke"><label for="q14d"><span class="option-indicator"></span>Nej, nok ikke</label></div>
+                    <div class="option"><input type="radio" name="q14" id="q14e" value="Nej, slet ikke"><label for="q14e"><span class="option-indicator"></span>Nej, slet ikke</label></div>
+                </div>
+            </div>
+
+            <div class="question-card" data-question="15">
+                <div class="question-header">
+                    <span class="question-number">15</span>
+                    <span class="question-category">Holdninger</span>
+                </div>
+                <p class="question-text">Er du bekymret for, at udsatte borgere vil få mindre hjælp?</p>
+                <div class="options">
+                    <div class="option"><input type="radio" name="q15" id="q15a" value="Meget bekymret"><label for="q15a"><span class="option-indicator"></span>Meget bekymret</label></div>
+                    <div class="option"><input type="radio" name="q15" id="q15b" value="Lidt bekymret"><label for="q15b"><span class="option-indicator"></span>Lidt bekymret</label></div>
+                    <div class="option"><input type="radio" name="q15" id="q15c" value="Ikke bekymret"><label for="q15c"><span class="option-indicator"></span>Ikke bekymret</label></div>
+                    <div class="option"><input type="radio" name="q15" id="q15d" value="Ved ikke"><label for="q15d"><span class="option-indicator"></span>Ved ikke</label></div>
+                </div>
+            </div>
+
+            <div class="question-card" data-question="16">
+                <div class="question-header">
+                    <span class="question-number">16</span>
+                    <span class="question-category">Holdninger</span>
+                </div>
+                <p class="question-text">Synes du, det er rimeligt at ca. 3.500 jobcentermedarbejdere mister deres job?</p>
+                <div class="options">
+                    <div class="option"><input type="radio" name="q16" id="q16a" value="Ja, det er nødvendigt"><label for="q16a"><span class="option-indicator"></span>Ja, det er en nødvendig konsekvens</label></div>
+                    <div class="option"><input type="radio" name="q16" id="q16b" value="Ærgerligt men forståeligt"><label for="q16b"><span class="option-indicator"></span>Det er ærgerligt, men forståeligt</label></div>
+                    <div class="option"><input type="radio" name="q16" id="q16c" value="Det bekymrer mig"><label for="q16c"><span class="option-indicator"></span>Det bekymrer mig</label></div>
+                    <div class="option"><input type="radio" name="q16" id="q16d" value="Det er urimeligt"><label for="q16d"><span class="option-indicator"></span>Det er urimeligt over for medarbejderne</label></div>
+                    <div class="option"><input type="radio" name="q16" id="q16e" value="Ved ikke"><label for="q16e"><span class="option-indicator"></span>Ved ikke</label></div>
+                </div>
+            </div>
+
+            <div class="question-card" data-question="17">
+                <div class="question-header">
+                    <span class="question-number">17</span>
+                    <span class="question-category">Holdninger</span>
+                </div>
+                <p class="question-text">Hvad tror du bliver den største fordel ved reformen?</p>
+                <div class="options">
+                    <div class="option"><input type="radio" name="q17" id="q17a" value="Mindre bureaukrati"><label for="q17a"><span class="option-indicator"></span>Mindre bureaukrati for de ledige</label></div>
+                    <div class="option"><input type="radio" name="q17" id="q17b" value="Mere værdighed"><label for="q17b"><span class="option-indicator"></span>Mere værdighed i mødet med systemet</label></div>
+                    <div class="option"><input type="radio" name="q17" id="q17c" value="Besparelser"><label for="q17c"><span class="option-indicator"></span>Besparelser til samfundet</label></div>
+                    <div class="option"><input type="radio" name="q17" id="q17d" value="Bedre tilpasset hjælp"><label for="q17d"><span class="option-indicator"></span>Bedre tilpasset hjælp til den enkelte</label></div>
+                    <div class="option"><input type="radio" name="q17" id="q17e" value="Ingen fordele"><label for="q17e"><span class="option-indicator"></span>Jeg tror ikke, der kommer nogen fordele</label></div>
+                    <div class="option"><input type="radio" name="q17" id="q17f" value="Ved ikke"><label for="q17f"><span class="option-indicator"></span>Ved ikke</label></div>
+                </div>
+            </div>
+
+            <!-- FREMTIDEN -->
+            <div class="section-divider">
+                <div class="section-title">🔮 Fremtiden</div>
+            </div>
+
+            <div class="question-card" data-question="18">
+                <div class="question-header">
+                    <span class="question-number">18</span>
+                    <span class="question-category">Fremtid</span>
+                </div>
+                <p class="question-text">Hvad bekymrer dig mest ved reformen? (vælg maks 2)</p>
+                <div class="options">
+                    <div class="option"><input type="checkbox" name="q18" id="q18a" value="Udsatte falder mellem stole"><label for="q18a"><span class="option-indicator"></span>At udsatte borgere falder mellem to stole</label></div>
+                    <div class="option"><input type="checkbox" name="q18" id="q18b" value="For mange fyres"><label for="q18b"><span class="option-indicator"></span>At for mange medarbejdere fyres</label></div>
+                    <div class="option"><input type="checkbox" name="q18" id="q18c" value="Kvaliteten falder"><label for="q18c"><span class="option-indicator"></span>At kvaliteten af hjælpen falder</label></div>
+                    <div class="option"><input type="checkbox" name="q18" id="q18d" value="Bare nyt navn"><label for="q18d"><span class="option-indicator"></span>At det bare bliver et nyt navn for det samme</label></div>
+                    <div class="option"><input type="checkbox" name="q18" id="q18e" value="Store lokale forskelle"><label for="q18e"><span class="option-indicator"></span>At der bliver store forskelle mellem kommunerne</label></div>
+                    <div class="option"><input type="checkbox" name="q18" id="q18f" value="Intet bekymrer mig"><label for="q18f"><span class="option-indicator"></span>Intet bekymrer mig</label></div>
+                </div>
+            </div>
+
+            <div class="question-card" data-question="19">
+                <div class="question-header">
+                    <span class="question-number">19</span>
+                    <span class="question-category">Fremtid</span>
+                </div>
+                <p class="question-text">Tror du, a-kasser og private aktører kan gøre det bedre end jobcentrene?</p>
+                <div class="options">
+                    <div class="option"><input type="radio" name="q19" id="q19a" value="Ja, helt sikkert"><label for="q19a"><span class="option-indicator"></span>Ja, helt sikkert</label></div>
+                    <div class="option"><input type="radio" name="q19" id="q19b" value="Ja, sandsynligvis"><label for="q19b"><span class="option-indicator"></span>Ja, sandsynligvis</label></div>
+                    <div class="option"><input type="radio" name="q19" id="q19c" value="Måske"><label for="q19c"><span class="option-indicator"></span>Måske</label></div>
+                    <div class="option"><input type="radio" name="q19" id="q19d" value="Nej, nok ikke"><label for="q19d"><span class="option-indicator"></span>Nej, nok ikke</label></div>
+                    <div class="option"><input type="radio" name="q19" id="q19e" value="Nej, slet ikke"><label for="q19e"><span class="option-indicator"></span>Nej, slet ikke</label></div>
+                    <div class="option"><input type="radio" name="q19" id="q19f" value="Ved ikke"><label for="q19f"><span class="option-indicator"></span>Ved ikke</label></div>
+                </div>
+            </div>
+
+            <div class="question-card" data-question="20">
+                <div class="question-header">
+                    <span class="question-number">20</span>
+                    <span class="question-category">Fremtid</span>
+                </div>
+                <p class="question-text">Har du en afsluttende kommentar til jobcenterreformen?</p>
+                <textarea name="q20" id="q20" placeholder="Skriv din kommentar her... (valgfrit, maks 1000 tegn)" maxlength="1000"></textarea>
+            </div>
+
+            <div class="submit-section">
+                <button type="button" class="btn-submit" id="submitBtn">
+                    <span>Send mine svar</span>
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+                <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.875rem;">
+                    Dine svar gemmes anonymt og sikkert
                 </p>
-                <p style="color: var(--text-muted);">
-                    Vi glæder os til at høre fra dig og hjælpe din skole med at få bedre indsigt.
-                </p>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Thank You -->
+    <div class="thank-you" id="thankYou">
+        <div class="thank-you-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h2>Tak for din deltagelse! 🙏</h2>
+        <p>Dine svar er blevet registreret og hjælper med at give et billede af, hvad danskerne mener om jobcenterreformen.</p>
+        
+        <div class="ai-insight">
+            <div class="ai-insight-icon">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            </div>
+            <div class="ai-insight-text">
+                <strong>AI-indsigt:</strong> Dine svar vil indgå i en samlet analyse. SurWise bruger AI til at finde mønstre og indsigter på tværs af alle besvarelser.
+            </div>
+        </div>
+    </div>
+
     <footer>
-        <div class="footer-container">
-            <div class="footer-logo">
-                <svg class="footer-logo-svg" viewBox="0 0 280 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Clipboard icon -->
-                    <rect x="4" y="8" width="40" height="48" rx="4" stroke="white" stroke-width="2.5" fill="none"/>
-                    <rect x="14" y="4" width="20" height="8" rx="2" fill="white"/>
-                    <!-- Bar chart -->
-                    <rect x="12" y="36" width="6" height="14" rx="1" fill="white"/>
-                    <rect x="21" y="28" width="6" height="22" rx="1" fill="white"/>
-                    <rect x="30" y="20" width="6" height="30" rx="1" fill="white"/>
-                    <!-- Checkmark circle -->
-                    <circle cx="38" cy="48" r="10" fill="white"/>
-                    <path d="M33 48l3 3 6-6" stroke="#0a1f44" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <!-- SurWise text -->
-                    <text x="56" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-size="28" font-weight="700" fill="white">SurWise</text>
-                    <!-- SURVEY INSIGHTS text -->
-                    <text x="56" y="52" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="600" fill="white" letter-spacing="1.5">SURVEY INSIGHTS</text>
-                </svg>
-            </div>
-            <div class="footer-links">
-                <a href="#features">Funktioner</a>
-                <a href="#pricing">Priser</a>
-                <a href="#kontakt">Kontakt</a>
-                <a href="#">Privatlivspolitik</a>
-            </div>
-            <div class="footer-copy">© 2025 SurWise. Alle rettigheder forbeholdes.</div>
-        </div>
+        Lavet med ❤️ af <a href="https://surwise.vercel.app">SurWise</a> • Intelligent Survey Platform
     </footer>
 
     <script>
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+        // ===========================================
+        // GOOGLE SHEETS INTEGRATION
+        // ===========================================
+        // VIGTIGT: Erstat denne URL med din egen Google Apps Script Web App URL
+        // Se instruktioner nedenfor for at oprette den
+        const GOOGLE_SCRIPT_URL = 'DIN_GOOGLE_SCRIPT_URL_HER';
+
+        // ===========================================
+        // APP LOGIC
+        // ===========================================
+        const totalQuestions = 20;
+        let answeredQuestions = new Set();
+
+        // Start button
+        document.getElementById('startBtn').addEventListener('click', () => {
+            document.getElementById('landing').style.display = 'none';
+            document.getElementById('surveySection').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+        // Progress tracking
+        function updateProgress() {
+            const count = answeredQuestions.size;
+            const percent = Math.round((count / totalQuestions) * 100);
+            document.getElementById('progressLabel').textContent = `Spørgsmål ${count} af ${totalQuestions}`;
+            document.getElementById('progressPercent').textContent = `${percent}%`;
+            document.getElementById('progressFill').style.width = `${percent}%`;
+        }
+
+        // Track radio/checkbox answers
+        document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(input => {
+            input.addEventListener('change', function() {
+                const card = this.closest('.question-card');
+                const questionNum = card.dataset.question;
+                
+                if (this.type === 'radio' || document.querySelectorAll(`input[name="${this.name}"]:checked`).length > 0) {
+                    answeredQuestions.add(questionNum);
+                    card.classList.add('answered');
+                }
+                updateProgress();
+            });
+        });
+
+        // Track textarea
+        document.getElementById('q20').addEventListener('input', function() {
+            const card = this.closest('.question-card');
+            if (this.value.length > 0) {
+                answeredQuestions.add('20');
+                card.classList.add('answered');
+            } else {
+                answeredQuestions.delete('20');
+                card.classList.remove('answered');
+            }
+            updateProgress();
+        });
+
+        // Limit checkbox to 2 for q18
+        document.querySelectorAll('input[name="q18"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const checked = document.querySelectorAll('input[name="q18"]:checked');
+                if (checked.length > 2) {
+                    this.checked = false;
+                }
+            });
+        });
+
+        // Submit handler
+        document.getElementById('submitBtn').addEventListener('click', async function() {
+            const btn = this;
+            btn.classList.add('loading');
+            btn.disabled = true;
+
+            // Collect answers
+            const answers = {
+                timestamp: new Date().toISOString()
+            };
+
+            for (let i = 1; i <= 19; i++) {
+                const inputs = document.querySelectorAll(`input[name="q${i}"]:checked`);
+                if (inputs.length > 0) {
+                    if (inputs[0].type === 'checkbox') {
+                        answers[`q${i}`] = Array.from(inputs).map(r => r.value).join(', ');
+                    } else {
+                        answers[`q${i}`] = inputs[0].value;
+                    }
+                } else {
+                    answers[`q${i}`] = '';
+                }
+            }
+            answers.q20 = document.getElementById('q20').value;
+
+            // Send to Google Sheets
+            try {
+                if (GOOGLE_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbx_CQDymF4WnvXyCJ8ND4EW8g0c6LUl-p46ZEjSofxCzbLR7iJzD149Bz7yt4_byxSnHg/exec') {
+                    await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(answers)
                     });
                 }
-            });
-        });
+                console.log('Survey svar:', answers);
+            } catch (error) {
+                console.error('Fejl ved afsendelse:', error);
+            }
 
-        // Animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.feature-card, .pricing-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
+            // Show thank you
+            document.getElementById('surveySection').style.display = 'none';
+            document.getElementById('thankYou').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
+
+    <!--
+    ===========================================
+    GOOGLE SHEETS SETUP INSTRUKTIONER
+    ===========================================
+    
+    1. Opret et nyt Google Sheet
+    2. Gå til Extensions > Apps Script
+    3. Slet alt kode og indsæt dette:
+
+    function doPost(e) {
+      var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+      var data = JSON.parse(e.postData.contents);
+      
+      // Hvis første gang, opret headers
+      if (sheet.getLastRow() === 0) {
+        var headers = ['Timestamp', 'Q1 Alder', 'Q2 Beskæftigelse', 'Q3 Arbejdet i systemet', 
+                       'Q4 Kendskab', 'Q5 Kilder', 'Q6 Vidste besparelse', 'Q7 Vidste samtaler',
+                       'Q8 Kontakt jobcenter', 'Q9 Oplevelse', 'Q10 Hjalp det', 'Q11 Bureaukrati',
+                       'Q12 Kender andre', 'Q13 Holdning', 'Q14 Lettere i arbejde', 'Q15 Bekymret udsatte',
+                       'Q16 Rimeligt fyringer', 'Q17 Største fordel', 'Q18 Bekymringer', 
+                       'Q19 A-kasser bedre', 'Q20 Kommentar'];
+        sheet.appendRow(headers);
+      }
+      
+      var row = [
+        data.timestamp,
+        data.q1, data.q2, data.q3, data.q4, data.q5, data.q6, data.q7,
+        data.q8, data.q9, data.q10, data.q11, data.q12, data.q13, data.q14,
+        data.q15, data.q16, data.q17, data.q18, data.q19, data.q20
+      ];
+      
+      sheet.appendRow(row);
+      
+      return ContentService.createTextOutput(JSON.stringify({status: 'success'}))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
+    4. Klik "Deploy" > "New deployment"
+    5. Vælg "Web app"
+    6. Sæt "Execute as" til "Me"
+    7. Sæt "Who has access" til "Anyone"
+    8. Klik "Deploy"
+    9. Kopier URL'en og indsæt den i GOOGLE_SCRIPT_URL ovenfor
+    
+    ===========================================
+    -->
 </body>
 </html>
