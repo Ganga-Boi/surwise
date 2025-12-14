@@ -54,15 +54,11 @@
         .btn-submit.loading::after { content: ''; width: 20px; height: 20px; border: 2px solid white; border-top-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite; margin-left: 0.5rem; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* RAPPORT KNAP */
         .btn-report { display: inline-flex; align-items: center; gap: 0.75rem; padding: 1.25rem 2.5rem; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; border-radius: 16px; font-family: inherit; font-size: 1.125rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3); margin-top: 1.5rem; }
         .btn-report:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(16, 185, 129, 0.4); }
         .btn-report:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-        .btn-report.loading::after { content: ''; width: 20px; height: 20px; border: 2px solid white; border-top-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite; margin-left: 0.5rem; display: inline-block; }
-        
+
         #reportStatus { margin-top: 1.5rem; font-size: 1rem; min-height: 60px; }
-        #reportStatus a { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; padding: 1rem 2rem; background: var(--gradient); color: white; border-radius: 12px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; }
-        #reportStatus a:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(10, 31, 68, 0.3); }
 
         .survey-section { display: none; padding-bottom: 4rem; }
         .survey-section.active { display: block; }
@@ -439,7 +435,7 @@
         
         <div class="ai-insight">
             <div class="ai-insight-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
-            <div class="ai-insight-text"><strong>SurWise AI:</strong> Klik på knappen for at generere en intelligent PDF-analyse baseret på alle indsamlede svar.</div>
+            <div class="ai-insight-text"><strong>SurWise AI:</strong> Klik på knappen for at generere en intelligent PDF-analyse. Rapporten åbnes i et nyt vindue.</div>
         </div>
     </div>
 
@@ -449,7 +445,7 @@
         // URL til at sende survey-data til Sheets
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx_CQDymF4WnvXyCJ8ND4EW8g0c6LUl-p46ZEjSofxCzbLR7iJzD149Bz7yt4_byxSnHg/exec';
         
-        // URL til PDF API
+        // URL til PDF API - ÅBNES I NYT VINDUE (løser CORS)
         const PDF_API_URL = 'https://script.google.com/macros/s/AKfycbyRdnmg0kgD2EhzWz6N39gaKGwKXovkiJBeMigd9Nbg3qnKTKWQ9TUd7oug8k9kf2rAKg/exec?action=generatePDF';
         
         const totalQuestions = 20;
@@ -539,60 +535,26 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // GENERER RAPPORT - med CORS workaround
-        async function generateReport() {
+        // GENERER RAPPORT - ÅBNER I NYT VINDUE (LØSER CORS!)
+        function generateReport() {
             const btn = document.getElementById('reportBtn');
             const statusDiv = document.getElementById('reportStatus');
 
             btn.disabled = true;
-            btn.classList.add('loading');
-            btn.innerHTML = '⏳ Genererer rapport...';
+            btn.innerHTML = '⏳ Åbner rapport...';
             statusDiv.style.color = '#f59e0b';
-            statusDiv.innerHTML = 'Analyserer data og opretter PDF...<br><small>(Dette tager 15-30 sekunder)</small>';
+            statusDiv.innerHTML = 'Rapporten genereres og åbnes i nyt vindue...<br><small>(Tillad pop-ups hvis nødvendigt)</small>';
 
-            try {
-                // Brug fetch med redirect follow for Google Apps Script
-                const response = await fetch(PDF_API_URL, {
-                    method: 'GET',
-                    redirect: 'follow'
-                });
-                
-                const text = await response.text();
-                console.log('API Response:', text);
-                
-                // Parse JSON fra response
-                let data;
-                try {
-                    data = JSON.parse(text);
-                } catch (e) {
-                    throw new Error('Kunne ikke parse svar fra server');
-                }
+            // ÅBEN API DIREKTE I NYT VINDUE - OMGÅR CORS!
+            window.open(PDF_API_URL, '_blank');
 
-                if (data.success) {
-                    btn.innerHTML = '🎉 Rapport klar!';
-                    btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
-                    statusDiv.style.color = '#10b981';
-                    statusDiv.innerHTML = '✅ Din PDF-rapport er genereret!<br><a href="' + data.pdfUrl + '" target="_blank">📥 Åbn rapport</a>';
-                } else {
-                    showReportError(data.error || 'Ukendt fejl');
-                }
-            } catch (error) {
-                console.error('Fetch error:', error);
-                showReportError('Forbindelsesfejl: ' + error.message);
-            }
-        }
-
-        function showReportError(errorMessage) {
-            const btn = document.getElementById('reportBtn');
-            const statusDiv = document.getElementById('reportStatus');
-
-            btn.disabled = false;
-            btn.classList.remove('loading');
-            btn.innerHTML = '📄 Se den samlede rapport';
-            btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
-            
-            statusDiv.style.color = '#ef4444';
-            statusDiv.innerHTML = '❌ Fejl: ' + errorMessage + '<br><small>Prøv igen om lidt.</small>';
+            // Reset knap efter 3 sekunder
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.innerHTML = '📄 Se den samlede rapport';
+                statusDiv.style.color = '#10b981';
+                statusDiv.innerHTML = '✅ Rapport åbnet i nyt vindue!<br><small>Klik igen for at generere ny rapport.</small>';
+            }, 3000);
         }
     </script>
 </body>
