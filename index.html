@@ -425,7 +425,7 @@
         </div>
     </section>
 
-    <!-- OPDATERET THANK-YOU MED RAPPORT-KNAP -->
+    <!-- THANK-YOU MED RAPPORT-KNAP -->
     <div class="thank-you" id="thankYou">
         <div class="thank-you-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
         <h2>Tak for din deltagelse! 🙏</h2>
@@ -539,7 +539,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // GENERER RAPPORT
+        // GENERER RAPPORT - med CORS workaround
         async function generateReport() {
             const btn = document.getElementById('reportBtn');
             const statusDiv = document.getElementById('reportStatus');
@@ -551,8 +551,22 @@
             statusDiv.innerHTML = 'Analyserer data og opretter PDF...<br><small>(Dette tager 15-30 sekunder)</small>';
 
             try {
-                const response = await fetch(PDF_API_URL);
-                const data = await response.json();
+                // Brug fetch med redirect follow for Google Apps Script
+                const response = await fetch(PDF_API_URL, {
+                    method: 'GET',
+                    redirect: 'follow'
+                });
+                
+                const text = await response.text();
+                console.log('API Response:', text);
+                
+                // Parse JSON fra response
+                let data;
+                try {
+                    data = JSON.parse(text);
+                } catch (e) {
+                    throw new Error('Kunne ikke parse svar fra server');
+                }
 
                 if (data.success) {
                     btn.innerHTML = '🎉 Rapport klar!';
@@ -563,6 +577,7 @@
                     showReportError(data.error || 'Ukendt fejl');
                 }
             } catch (error) {
+                console.error('Fetch error:', error);
                 showReportError('Forbindelsesfejl: ' + error.message);
             }
         }
